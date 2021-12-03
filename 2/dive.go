@@ -21,7 +21,10 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := strings.Fields(scanner.Text())
-		movement, _ := strconv.Atoi(line[1])
+		movement, err := strconv.Atoi(line[1])
+		if err != nil {
+			panic(err)
+		}
 		switch line[0] {
 		case "up":
 			aim -= movement
